@@ -38,3 +38,9 @@ button {
     outline: none;
     color: #020929;
 }
+
+select {
+    padding: 7px;
+    border: 1px solid #020929;
+    border-radius: 10px;
+}
