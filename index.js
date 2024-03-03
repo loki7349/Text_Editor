@@ -25,7 +25,52 @@ const initializer = () =>{
     highlighter(spacingButton, true);
     highlighter(formatButtons, false);
     highlighter(scriptButtons, true);
-}
+
+    fontList.map(value =>{
+        let option = document.createElement("option");
+        option.value = value;
+        option.innerHTML = value;
+        fontName.appendChild(option);
+    });
+
+    for(let i=1; i<=35; i++){
+        let option = document.createElement("option");
+        option.value = i;
+        option.innerHTML = i;
+        fontSizeRef.appendChild(option);
+    };
+
+    fontSizeRef.value = 3;
+
+};
+
+const modifyText = (command, defaultUi, value) => {
+    document.execCommand(command, defaultUi, value);
+};
+
+optionsButtons.forEach(button => {
+    button.addEventListener("click", ()=>{
+        modifyText(button.id, false, null);
+    })
+});
+
+advanceOptionButtons.forEach((button)=>{
+    button.addEventListener("change", () =>{
+        modifyText(button.id, false, button.value);
+    })
+})
+
+linkButton.addEventListener("click", () => {
+    let userLink = prompt("Enter URL");
+
+    if(/http/i.test(userLink)){
+        modifyText(linkButton.id, false, userLink);
+    }
+    else{
+        userLink = "http://" + userLink;
+        modifyText(linkButton.id, false, userLink);
+    }
+})
 
 const highlighter = (className, needsRemoval) => {
     className.forEach((button) => {
